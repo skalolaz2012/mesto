@@ -9,68 +9,86 @@
   <meta name="keywords" content="Жак Кусто, MESTO, Карачаевск, Эльбрус, Домбай">
   <meta name="author" content="Сергей Сапёров">
   <link rel="stylesheet" href="./pages/index.css">
-  <title>Russian travel</title>
+  <title>MESTO</title>
 </head>
 
 <body class="root">
   <div class="page">
     <header class="header">
-      <a href="#">
+      <a class="header__link" href="#">
         <img src="./images/logo.svg" alt="MESTO Russia - социальная сеть Руси" class="header__logo">
       </a>
+      <hr class="header-line">
     </header>
     <main class="content">
       <section class="profile">
-        <img src="./images/kusto.png" alt="Фотография того самого Жака Ив Кусто" class="avatar">
+        <img src="./images/kusto.png" alt="Фотография того самого Жака Ив Кусто" class="profile__avatar">
         <div class="profile-info">
           <h1 class="profile-info__title">Жак-Ив Кусто</h1>
           <p class="profile-info__text">Исследователь океана</p>
-          <button class="add-button">+</button>
         </div>
+        <button class="profile__edit-button"></button>
+        <button class="profile__add-button">+</button>
       </section>
       <section class="elements">
-        <div class="element">
-          <img src="./images/karachaevsk.png" alt="Старинный замок в Карачаевске" class="element__mask">
-          <h2 class="element__title">Карачаевск</h2>
-          <button class="element__button"></button>
-        </div>
-        <div class="element">
-          <img src="./images/elbrus.png" alt="Завораживающий утренний вид горы Эльбрус издалека" class="element__mask">
-          <h2 class="element__title">Гора Эльбрус</h2>
-          <button class="element__button"></button>
-        </div>
-        <div class="element">
-          <img src="./images/dombai.png" alt="Крутые склоны Домбая" class="element__mask">
-          <h2 class="element__title">Домбай</h2>
-          <button class="element__button"></button>
-        </div>
-        <div class="element">
-          <img src="./images/elbrus.png" alt="Завораживающий утренний вид горы Эльбрус издалека" class="element__mask">
-          <h2 class="element__title">Гора Эльбрус</h2>
-          <button class="element__button"></button>
-        </div>
-        <div class="element">
-          <img src="./images/dombai.png" alt="Крутые склоны Домбая" class="element__mask">
-          <h2 class="element__title">Домбай</h2>
-          <button class="element__button"></button>
-        </div>
-        <div class="element">
-          <img src="./images/karachaevsk.png" alt="Старинный замок в Карачаевске" class="element__mask">
-          <h2 class="element__title">Карачаевск</h2>
-          <button class="element__button"></button>
-        </div>
+        <ul class="element">
+          <li class="element__item">
+            <img src="./images/karachaevsk.png" alt="Старинный замок в Карачаевске" class="element__image">
+            <div class="element__description">
+              <h2 class="element__title">Карачаевск</h2>
+              <button class="element__button"></button>
+            </div>
+          </li>
+          <li class="element__item">
+            <img src="./images/elbrus.png" alt="Завораживающий утренний вид горы Эльбрус издалека" class="element__image">
+            <div class="element__description">
+              <h2 class="element__title">Гора Эльбрус</h2>
+              <button class="element__button"></button>
+            </div>
+          </li>
+          <li class="element__item">
+            <img src="./images/dombai.png" alt="Крутые склоны Домбая" class="element__image">
+            <div class="element__description">
+              <h2 class="element__title">Домбай</h2>
+              <button class="element__button"></button>
+            </div>
+          </li>
+          <li class="element__item">
+            <img src="./images/tyumen.png" alt="Туманный альбион районов в Тюмени" class="element__image">
+            <div class="element__description">
+              <h2 class="element__title">Тюмень</h2>
+              <button class="element__button"></button>
+            </div>
+          </li>
+          <li class="element__item">
+            <img src="./images/krasnoyarsk.png" alt="Завораживающий бескрайний лес Красноярска" class="element__image">
+            <div class="element__description">
+              <h2 class="element__title">Красноярск</h2>
+              <button class="element__button"></button>
+            </div>
+          </li>
+          <li class="element__item">
+            <img src="./images/cherkesia.png" alt="Старинный замок в Карачаевске" class="element__image">
+            <div class="element__description">
+              <h2 class="element__title">Карачаево-Черкесия</h2>
+              <button class="element__button"></button>
+            </div>
+          </li>
+        </ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__text">&#169; 2020 Mesto Russia</p>
     </footer>
   </div>
-  <form class="popup">
-    <button class="popup__close-button"></button>
-    <h2 class="popup__title">Редактировать профиль</h2>
-    <input type="text" class="popup__field-title">
-    <input type="text" class="popup__field-text">
-    <button class="popup__submit-button">Сохранить</button>
-  </form>
-  <script src="./script.js"></script>
+  <div class="popup">
+    <form class="popup__container">
+      <button class="popup__close-button"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <input type="text" class="popup__field-title">
+      <input type="text" class="popup__field-text">
+      <button class="popup__submit-button">Сохранить</button>
+    </form>
+  </div>
+  <script src="./index.js"></script>
 </body>

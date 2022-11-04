@@ -1,0 +1,8 @@
+.element__button {
+  all: unset;
+  min-width: 22px;
+  min-height: 19px;
+  background: url(../../../images/heart.svg) center no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}

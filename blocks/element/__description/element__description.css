@@ -1,0 +1,8 @@
+.element__description {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  max-width: 246px;
+  margin-right: 30px;
+  margin-left: 20px;
+}
