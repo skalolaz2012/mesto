@@ -6,7 +6,7 @@
 
 @media (max-width: 484px) {
   .header-line {
-    width: 320px;
+    width: 100vw;
     margin-bottom: 39.25px;
   }
 }

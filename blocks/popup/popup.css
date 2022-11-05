@@ -12,3 +12,9 @@
   align-items: start;
   padding-top: 195px;
 }
+
+@media (max-width: 640px) {
+  .popup {
+    padding-top: 123px;
+  }
+}

@@ -14,3 +14,10 @@
   outline: none;
   border-bottom-color: rgba(0, 0, 0, 1);
 }
+
+@media (max-width: 640px) {
+  .popup__field-title {
+    margin-top: 75px;
+    padding-top: 0;
+  }
+}
