@@ -1,7 +1,17 @@
 .profile-info__title {
-  margin: 0;
+  margin: 23px 0 0;
+  display: inline-block;
   font-weight: 500;
   font-size: 42px;
   line-height: 1.14;
   color: #FFF;
+}
+
+@media (max-width: 484px) {
+  .profile-info__title {
+    margin-top: 0;
+    margin-left: 38px;
+    font-size: 27px;
+    line-height: 1.22;
+  }
 }

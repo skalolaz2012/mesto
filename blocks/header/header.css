@@ -1,0 +1,14 @@
+@media (max-width: 968px) {
+  .header {
+    margin-right: 40px;
+    margin-left: 40px;
+  }
+}
+
+@media (max-width: 484px) {
+  .header {
+    margin-right: 0;
+    margin-left: 0;
+    max-width: 280;
+  }
+}

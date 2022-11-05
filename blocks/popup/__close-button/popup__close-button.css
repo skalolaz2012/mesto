@@ -1,0 +1,15 @@
+.popup__close-button {
+  all: unset;
+  position: relative;
+  top: -40px;
+  right: -476px;
+  min-width: 32px;
+  min-height: 32px;
+  background: url(../../../images/close-button.svg) center no-repeat;
+  cursor: pointer;
+  transition: opacity .3s linear;
+}
+
+.element__button:hover {
+  opacity: .5;
+}

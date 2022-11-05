@@ -3,3 +3,10 @@
   border-radius: 10px;
   overflow: hidden;
 }
+
+@media (max-width: 640px) {
+  .element__item {
+    max-width: 282px;
+        margin: 0 auto;
+  }
+}

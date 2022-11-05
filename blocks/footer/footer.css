@@ -1,0 +1,13 @@
+@media (max-width: 968px) {
+  .footer {
+    margin-right: 40px;
+    margin-left: 40px;
+  }
+}
+
+@media (max-width: 484px) {
+  .footer {
+    margin-right: 19px;
+    margin-left: 19px;
+  }
+}

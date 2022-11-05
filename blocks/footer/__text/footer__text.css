@@ -5,3 +5,11 @@
   line-height: 1.22;
   color: #545454;
 }
+
+@media (max-width: 484px) {
+  .footer__text {
+    font-size: 14px;
+    margin-top: 48px;
+    margin-bottom: 36px;
+  }
+}

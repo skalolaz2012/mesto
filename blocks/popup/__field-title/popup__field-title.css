@@ -1,0 +1,16 @@
+.popup__field-title {
+  border: none;
+  padding: 0;
+  padding-top: 54px;
+  padding-bottom: 13px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  width: 100%;
+}
+
+.popup__field-title:focus {
+  outline: none;
+  border-bottom-color: rgba(0, 0, 0, 1);
+}

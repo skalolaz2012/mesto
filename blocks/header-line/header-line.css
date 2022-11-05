@@ -3,3 +3,10 @@
   opacity: 0.7;
   border: 1px solid #545454;
 }
+
+@media (max-width: 484px) {
+  .header-line {
+    width: 320px;
+    margin-bottom: 39.25px;
+  }
+}
