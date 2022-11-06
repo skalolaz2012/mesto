@@ -24,6 +24,7 @@
 
 @media (max-width: 484px) {
   .profile__add-button {
+    margin-top: 0;
     min-width: 282px;
     background-image: url('../../../images/add-button_small.svg');
   }
