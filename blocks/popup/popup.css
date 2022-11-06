@@ -9,12 +9,5 @@
   left: 0;
   background-color: rgba(0, 0, 0, .5);
   justify-content: center;
-  align-items: start;
-  padding-top: 195px;
-}
-
-@media (max-width: 640px) {
-  .popup {
-    padding-top: 123px;
-  }
+  align-items: center;
 }

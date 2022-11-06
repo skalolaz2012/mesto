@@ -1,7 +1,7 @@
 .popup__input {
   border: none;
   padding: 0;
-  padding-top: 54px;
+  padding-top: 28px;
   padding-bottom: 13px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-weight: 400;
@@ -13,6 +13,16 @@
 .popup__input:focus {
   outline: none;
   border-bottom-color: rgba(0, 0, 0, 1);
+}
+
+.popup__input:first-child {
+  padding-top: 47px;
+}
+
+@media (max-width: 640px) {
+  .popup__input {
+  padding-top: 30px;
+  }
 }
 
 @media (max-width: 640px) {

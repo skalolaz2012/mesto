@@ -11,9 +11,8 @@
   white-space: nowrap;
 }
 
-@media (max-width: 484px) {
+@media (max-width: 582px) {
   .profile__text {
-    text-align: center;
     padding-top: 6px;
     font-size: 14px;
     max-width: 282px;
