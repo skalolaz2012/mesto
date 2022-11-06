@@ -41,12 +41,14 @@ function formSubmitHandler(evt) {
 
   nameValue.textContent = nameInput.value
   jobValue.textContent = jobInput.value
-}
 
-//по клику на кнопку сохранить закрываем форму
-saveButton.addEventListener('click', () => {
+  //по клику на кнопку сохранить закрываем форму
+  saveButton.addEventListener('click', () => {
   onClose(popupForm)
 })
+}
+
+
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
