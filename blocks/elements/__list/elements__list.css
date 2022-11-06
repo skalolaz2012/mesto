@@ -1,4 +1,4 @@
-.element {
+.elements__list {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -10,14 +10,14 @@
 }
 
 @media (max-width: 840px) {
-  .element {
+  .elements__list {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 640px) {
-  .element {
+  .elements__list {
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(6, 1fr);
   }

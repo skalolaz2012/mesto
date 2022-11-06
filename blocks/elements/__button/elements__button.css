@@ -1,4 +1,4 @@
-.element__button {
+.elements__button {
   all: unset;
   min-width: 22px;
   min-height: 19px;
@@ -8,6 +8,6 @@
   transition: opacity .3s linear;
 }
 
-.element__button:hover {
+.elements__button:hover {
   opacity: .5;
 }

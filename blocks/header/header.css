@@ -1,7 +1,10 @@
 @media (max-width: 968px) {
   .header {
     margin-right: 40px;
+    padding-bottom: 40px;
     margin-left: 40px;
+    border-bottom: 1px solid rgba(54, 54, 54, .7);
+    margin-bottom: 40px;
   }
 }
 
@@ -9,6 +12,6 @@
   .header {
     margin-right: 0;
     margin-left: 0;
-    max-width: 280;
+    max-width: 100%;
   }
 }
