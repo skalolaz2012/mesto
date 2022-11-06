@@ -9,7 +9,6 @@ const jobInput = document.querySelector('.popup__input_field_text')
 const profileTitle = document.querySelector('.profile__title')
 const profileText = document.querySelector('.profile__text')
 
-
 //объявляем переменную и атрибутом popup передаем в стрелочную функцию добавление класса
 const onOpen = (popup) => {
   popup.classList.add('popup_opened')
@@ -44,10 +43,7 @@ function formSubmitHandler(evt) {
 
   //по клику на кнопку сохранить закрываем форму
   onClose(popupForm)
-
 }
-
-
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
