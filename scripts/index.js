@@ -43,9 +43,8 @@ function formSubmitHandler(evt) {
   jobValue.textContent = jobInput.value
 
   //по клику на кнопку сохранить закрываем форму
-  saveButton.addEventListener('click', () => {
   onClose(popupForm)
-})
+
 }
 
 
