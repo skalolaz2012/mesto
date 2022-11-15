@@ -31,68 +31,63 @@
       </section>
       <section class="elements">
         <ul class="elements__list">
-          <li class="elements__item">
-            <img src="./images/karachaevsk.png" alt="Старинный замок в Карачаевске" class="elements__image">
-            <div class="elements__description">
-              <h2 class="elements__title">Карачаевск</h2>
-              <button type="button" aria-label="Кнопка лайк карточки" class="elements__button"></button>
-            </div>
-          </li>
-          <li class="elements__item">
-            <img src="./images/elbrus.png" alt="Завораживающий утренний вид горы Эльбрус издалека" class="elements__image">
-            <div class="elements__description">
-              <h2 class="elements__title">Гора Эльбрус</h2>
-              <button type="button" aria-label="Кнопка лайк карточки" class="elements__button"></button>
-            </div>
-          </li>
-          <li class="elements__item">
-            <img src="./images/dombai.png" alt="Крутые склоны Домбая" class="elements__image">
-            <div class="elements__description">
-              <h2 class="elements__title">Домбай</h2>
-              <button type="button" aria-label="Кнопка лайк карточки" class="elements__button"></button>
-            </div>
-          </li>
-          <li class="elements__item">
-            <img src="./images/tyumen.png" alt="Туманный альбион районов в Тюмени" class="elements__image">
-            <div class="elements__description">
-              <h2 class="elements__title">Тюмень</h2>
-              <button type="button" aria-label="Кнопка лайк карточки" class="elements__button"></button>
-            </div>
-          </li>
-          <li class="elements__item">
-            <img src="./images/krasnoyarsk.png" alt="Завораживающий бескрайний лес Красноярска" class="elements__image">
-            <div class="elements__description">
-              <h2 class="elements__title">Красноярск</h2>
-              <button type="button" aria-label="Кнопка лайк карточки" class="elements__button"></button>
-            </div>
-          </li>
-          <li class="elements__item">
-            <img src="./images/cherkesia.png" alt="Старинный замок в Карачаевске" class="elements__image">
-            <div class="elements__description">
-              <h2 class="elements__title">Карачаево-Черкесия</h2>
-              <button type="button" aria-label="Кнопка лайк карточки" class="elements__button"></button>
-            </div>
-          </li>
+
         </ul>
+        <div class="popup popup_opacity_dark" id="popup-figure">
+          <figure class="popup__figure">
+            <button type="button" aria-label="Кнопка закрытия карточки" class="popup__close-button"></button>
+            <img class="popup__image" src="#" alt="">
+            <figcaption class="popup__description"></figcaption>
+          </figure>
+        </div>
       </section>
     </main>
     <footer class="footer">
-      <p class="footer__text">&copy; 2020 Mesto Russia</p>
+      <p class="footer__text">&copy; 2022 Mesto Russia</p>
     </footer>
   </div>
-  <div class="popup">
-    <div class="popup__container">
+  <div class="popup popup_opacity_medium" id="popup-edit-form">
+    <div class="popup__figure">
       <button type="button" aria-label="Кнопка закрытия формы" class="popup__close-button"></button>
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <form name="form1" class="popup__form">
-        <fieldset class="popup__field-info">
-          <input type="text" name="nick" placeholder="Жак-Ив Кусто" class="popup__input popup__input_field_title">
-          <input type="text" name="about" placeholder="Исследователь океана" class="popup__input popup__input_field_text">
-          <button type="submit" class="popup__submit-button">Сохранить</button>
-        </fieldset>
-      </form>
+      <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form name="form1" class="popup__form">
+          <fieldset class="popup__field-info">
+            <input type="text" name="nick" placeholder="Жак-Ив Кусто" class="popup__input popup__input_field_title">
+            <input type="text" name="about" placeholder="Исследователь океана" class="popup__input popup__input_field_text">
+            <button type="submit" class="popup__submit-button">Сохранить</button>
+          </fieldset>
+        </form>
+      </div>
     </div>
   </div>
-  <script src="./scripts/index.js"></script>
+  <div class="popup popup_opacity_medium" id="popup-add-form">
+    <div class="popup__figure">
+      <button type="button" aria-label="Кнопка закрытия формы" class="popup__close-button"></button>
+      <div class="popup__container">
+        <h2 class="popup__title">Новое место</h2>
+        <form name="form1" class="popup__form">
+          <fieldset class="popup__field-info">
+            <input type="text" name="place" placeholder="Название" class="popup__input popup__input_field_description">
+            <input type="text" name="url" placeholder="Ссылка на картинку" class="popup__input popup__input_field_image">
+            <button type="submit" class="popup__submit-button">Создать</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="./scripts/index.js" defer></script>
+
+  <template id="element-template">
+    <li class="elements__item">
+      <button type="button" aria-label="Кнопка удаления карточки" class="elements__delete-button"></button>
+      <button class="elements__image-button"><img class="elements__image"></button>
+      <div class="elements__description">
+        <h2 class="elements__title">123</h2>
+        <button type="button" aria-label="Кнопка лайк карточки" class="elements__button"></button>
+      </div>
+    </li>
+  </template>
 </body>
 </html>

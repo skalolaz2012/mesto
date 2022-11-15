@@ -1,5 +1,8 @@
 .elements__image {
+  min-width: 282px;
   width: 100%;
-  height: auto;
+  height: 282px;
   display: block;
+  object-fit: cover;
+  cursor: pointer;
 }

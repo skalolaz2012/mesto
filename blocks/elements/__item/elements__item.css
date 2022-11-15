@@ -2,11 +2,12 @@
   background: #FFF;
   border-radius: 10px;
   overflow: hidden;
+  position: relative;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 840px) {
   .elements__item {
     max-width: 282px;
-        margin: 0 auto;
+    margin: 0 auto;
   }
 }

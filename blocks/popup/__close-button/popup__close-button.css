@@ -1,8 +1,9 @@
 .popup__close-button {
   all: unset;
   position: relative;
-  top: -40px;
-  right: -240px;
+  align-self: flex-end;
+  top: -18px;
+  right: -50px;
   min-width: 32px;
   min-height: 32px;
   background: url(../../../images/close-button.svg) center no-repeat;
@@ -10,7 +11,7 @@
   transition: opacity .3s linear;
 }
 
-.element__button:hover {
+.popup__close-button:hover {
   opacity: .5;
 }
 
@@ -18,8 +19,8 @@
   .popup__close-button {
     min-width: 20px;
     min-height: 20px;
-    right: -132px;
-    top: -37px;
+    right: 0;
+    top: -16px;
     background-image: url(../../../images/close-button_small.svg);
   }
 }
