@@ -30,13 +30,13 @@ const popupEditForm = document.querySelector('#popup-edit-form')
 const popupAddForm = document.querySelector('#popup-add-form')
 const popupFigure = document.querySelector('#popup-figure')
 
+const closeButtons = document.querySelectorAll('.popup__close-button')
+
 const editButton = document.querySelector('.profile__edit-button')
-const closeButton = document.querySelectorAll('.popup__close-button')
 const profileTitle = document.querySelector('.profile__title')
 const profileText = document.querySelector('.profile__text')
 const elementsContainer = document.querySelector('.elements__list')
 const elementsTitle = document.querySelector('.elements__title')
-const elementsImage = document.querySelectorAll('.elements__image')
 const addButton = document.querySelector('.profile__add-button')
 const popupImage = document.querySelector('.popup__image')
 const popupDescription = document.querySelector('.popup__description')
@@ -49,32 +49,34 @@ const imageInput = popupAddForm.querySelector('.popup__input_field_image')
 const createButton = popupAddForm.querySelector('.popup__submit-button')
 const formImage = popupAddForm.querySelector('.popup__form')
 
-
 //Функция открытия формы
-const onOpen = (popup) => {
+const openPopup = (popup) => {
   popup.classList.add('popup_opened')
 }
 
 //Функция закрытия формы
-const onClose = (popup) => {
+const closePopup = (popup) => {
   popup.classList.remove('popup_opened')
 }
+
+// Находим все "крестики" проекта по универсальному селектору и проходимся по каждому элементу коллекции NodeList
+closeButtons.forEach((button) => {
+  // Находим 1 раз ближайший к крестику попап 
+  const popup = button.closest('.popup');
+  // Устанавливаем обработчик закрытия на кнопку закрытия формы
+  button.addEventListener('click', () => closePopup(popup));
+});
 
 //Форма редактирования профиля
 //по клику на кнопку редактора открываем форму и записываем в поля значения с экрана
 editButton.addEventListener('click', () => {
-  onOpen(popupEditForm)
+  openPopup(popupEditForm)
   nameInput.value = profileTitle.textContent
   jobInput.value = profileText.textContent
 })
 
-//По клику на крестик закрываем форму
-closeButton[1].addEventListener('click', () => {
-  onClose(popupEditForm)
-})
-
 //Функция записи данных из формы в блок profile
-function formSubmitHandler(evt) {
+function handleEditingFormSubmit(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
   const nameValue = profileTitle
@@ -84,33 +86,23 @@ function formSubmitHandler(evt) {
   jobValue.textContent = jobInput.value
 
   //По клику на кнопку сохранить закрываем форму
-  onClose(popupEditForm)
+  closePopup(popupEditForm)
 }
 
 // Прикрепляем обработчик к форме редактирования профиля:
 // он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formSubmitHandler);
+formElement.addEventListener('submit', handleEditingFormSubmit);
 
 //Форма создания карточки
 //по клику на кнопку редактора открываем форму и записываем в поля значения с экрана
 addButton.addEventListener('click', () => {
-  onOpen(popupAddForm)
+  openPopup(popupAddForm)
   descriptionInput.value = ''
   imageInput.value = ''
 })
 
-//По клику на крестик закрываем форму
-closeButton[2].addEventListener('click', () => {
-  onClose(popupAddForm)
-})
-
-//Закрываем карточку с большой фотографией
-closeButton[0].addEventListener('click', () => {
-  onClose(popupFigure)
-})
-
 //Функция записи данных из формы в сгенерированную карточку elements
-function handleSubmitAddForm(evt) {
+function handleAddingFormSubmit(evt) {
   evt.preventDefault()
 
   const title = descriptionInput.value
@@ -121,12 +113,12 @@ function handleSubmitAddForm(evt) {
     link: image
   })
 
-  onClose(popupAddForm)
+  closePopup(popupAddForm)
 }
 
 // Прикрепляем обработчик к форме добавления карточки:
 // он будет следить за событием “submit” - «отправка»
-formImage.addEventListener('submit', handleSubmitAddForm)
+formImage.addEventListener('submit', handleAddingFormSubmit)
 
 //Templates
 const elementsTemplate = document.querySelector('#element-template').content.querySelector('.elements__item')
@@ -152,7 +144,7 @@ const handleOpenFigure = (evt) => {
   popupImage.setAttribute('alt', altSource)
   popupDescription.textContent = figureImage.closest('.elements__item').querySelector('.elements__title').textContent
 
-  onOpen(popupFigure)
+  openPopup(popupFigure)
 }
 
 //Создаём карточку из шаблона со всеми элементами
@@ -171,8 +163,8 @@ const createCard = (card) => {
   const likeButton = newItem.querySelector('.elements__button')
   likeButton.addEventListener('click', handleLikeItem)
 
-  const elementsImageBtn = newItem.querySelector('.elements__image-button')
-  elementsImageBtn.addEventListener('click', handleOpenFigure)
+  const elementsImageButton = newItem.querySelector('.elements__image-button')
+  elementsImageButton.addEventListener('click', handleOpenFigure)
 
   return newItem
 }
