@@ -9,6 +9,7 @@
   max-width: 336px;
   overflow: hidden;
   white-space: nowrap;
+  width: 100%;
 }
 
 @media (max-width: 582px) {

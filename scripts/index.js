@@ -31,27 +31,36 @@ const popupAddForm = document.querySelector('#popup-add-form')
 const popupFigure = document.querySelector('#popup-figure')
 
 const closeButtons = document.querySelectorAll('.popup__close-button')
+const overlays = document.querySelectorAll('.popup')
 
 const editButton = document.querySelector('.profile__edit-button')
 const profileTitle = document.querySelector('.profile__title')
 const profileText = document.querySelector('.profile__text')
 const elementsContainer = document.querySelector('.elements__list')
-const elementsTitle = document.querySelector('.elements__title')
 const addButton = document.querySelector('.profile__add-button')
 const popupImage = document.querySelector('.popup__image')
 const popupDescription = document.querySelector('.popup__description')
-const saveButton = popupEditForm.querySelector('.popup__submit-button')
-const formElement = popupEditForm.querySelector('.popup__form')
+const formEl = popupEditForm.querySelector('.popup__form')
 const nameInput = popupEditForm.querySelector('.popup__input_field_title')
 const jobInput = popupEditForm.querySelector('.popup__input_field_text')
+const nameError = popupEditForm.querySelector('.name-input-error')
+const aboutError = popupEditForm.querySelector('.about-input-error')
 const descriptionInput = popupAddForm.querySelector('.popup__input_field_description')
 const imageInput = popupAddForm.querySelector('.popup__input_field_image')
-const createButton = popupAddForm.querySelector('.popup__submit-button')
 const formImage = popupAddForm.querySelector('.popup__form')
+const cardError = popupAddForm.querySelector('.card-input-error')
+const urlError = popupAddForm.querySelector('.url-input-error')
+
+//Импорты из validate
+import { hideInputError } from '../scripts/validate.js';
 
 //Функция открытия формы
 const openPopup = (popup) => {
   popup.classList.add('popup_opened')
+  nameError.textContent = ''
+  aboutError.textContent = ''
+  cardError.textContent = ''
+  urlError.textContent = ''
 }
 
 //Функция закрытия формы
@@ -59,10 +68,30 @@ const closePopup = (popup) => {
   popup.classList.remove('popup_opened')
 }
 
+
+
+// Находим все "оверлеи" проекта по универсальному селектору и проходимся по каждому элементу коллекции NodeList
+overlays.forEach((overlay) => {
+  // Находим 1 раз ближайший к крестику попап 
+  const popup = overlay.closest('.popup')
+  document.addEventListener('keydown', function (evt) {
+    if (evt.key === "Escape") {
+      closePopup(popup)
+    }
+  });
+  // Устанавливаем обработчик на закрытие формы
+  overlay.addEventListener('click', (evt) => {
+    if(evt.target === evt.currentTarget) {
+      closePopup(popup)
+    }
+  })
+})
+
 // Находим все "крестики" проекта по универсальному селектору и проходимся по каждому элементу коллекции NodeList
 closeButtons.forEach((button) => {
   // Находим 1 раз ближайший к крестику попап 
   const popup = button.closest('.popup');
+
   // Устанавливаем обработчик закрытия на кнопку закрытия формы
   button.addEventListener('click', () => closePopup(popup));
 });
@@ -91,7 +120,7 @@ function handleEditingFormSubmit(evt) {
 
 // Прикрепляем обработчик к форме редактирования профиля:
 // он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', handleEditingFormSubmit);
+formEl.addEventListener('submit', handleEditingFormSubmit);
 
 //Форма создания карточки
 //по клику на кнопку редактора открываем форму и записываем в поля значения с экрана

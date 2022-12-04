@@ -10,6 +10,8 @@
   <meta name="author" content="Сергей Сапёров">
   <link rel="stylesheet" href="./pages/index.css">
   <title>MESTO</title>
+  <script type="module" src="./scripts/index.js" defer></script>
+  <script type="module" src="./scripts/validate.js" defer></script>
 </head>
 
 <body class="page">
@@ -51,10 +53,28 @@
       <button type="button" aria-label="Кнопка закрытия формы" class="popup__close-button"></button>
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="form1" class="popup__form">
+        <form id="form_name" name="form_name" class="popup__form" novalidate>
           <fieldset class="popup__field-info">
-            <input type="text" name="nick" placeholder="Жак-Ив Кусто" class="popup__input popup__input_field_title">
-            <input type="text" name="about" placeholder="Исследователь океана" class="popup__input popup__input_field_text">
+            <input
+              type="text"
+              name="nick"
+              placeholder="Имя"
+              required
+              minlength="2"
+              maxlength="40"
+              class="popup__input popup__input_field_title"
+              id="name-input">
+              <span class="name-input-error popup__error"></span>
+            <input
+              type="text"
+              name="about"
+              placeholder="О себе"
+              required
+              minlength="2"
+              maxlength="200"
+              class="popup__input popup__input_field_text"
+              id="about-input">
+              <span class="about-input-error popup__error"></span>
             <button type="submit" class="popup__submit-button">Сохранить</button>
           </fieldset>
         </form>
@@ -66,18 +86,32 @@
       <button type="button" aria-label="Кнопка закрытия формы" class="popup__close-button"></button>
       <div class="popup__container">
         <h2 class="popup__title">Новое место</h2>
-        <form name="form1" class="popup__form">
+        <form id="form_card" name="form_card" class="popup__form">
           <fieldset class="popup__field-info">
-            <input type="text" name="place" placeholder="Название" class="popup__input popup__input_field_description">
-            <input type="text" name="url" placeholder="Ссылка на картинку" class="popup__input popup__input_field_image">
+            <input
+              type="text"
+              name="place"
+              placeholder="Название"
+              required
+              minlength="2"
+              maxlength="30"
+              class="popup__input popup__input_field_description"
+              id="card-input">
+              <span class="card-input-error popup__error"></span>
+            <input
+              type="url"
+              name="url"
+              placeholder="Ссылка на картинку"
+              required
+              class="popup__input popup__input_field_image"
+              id="url-input">
+              <span class="url-input-error popup__error"></span>
             <button type="submit" class="popup__submit-button">Создать</button>
           </fieldset>
         </form>
       </div>
     </div>
   </div>
-
-  <script src="./scripts/index.js" defer></script>
 
   <template id="element-template">
     <li class="elements__item">
