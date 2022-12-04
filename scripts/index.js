@@ -68,8 +68,6 @@ const closePopup = (popup) => {
   popup.classList.remove('popup_opened')
 }
 
-
-
 // Находим все "оверлеи" проекта по универсальному селектору и проходимся по каждому элементу коллекции NodeList
 overlays.forEach((overlay) => {
   // Находим 1 раз ближайший к крестику попап 
