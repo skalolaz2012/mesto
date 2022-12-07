@@ -30,8 +30,8 @@ const popupEditForm = document.querySelector('#popup-edit-form')
 const popupAddForm = document.querySelector('#popup-add-form')
 const popupFigure = document.querySelector('#popup-figure')
 
-const closeButtons = document.querySelectorAll('.popup__close-button')
-const overlays = document.querySelectorAll('.popup')
+const popups = document.querySelectorAll('.popup')
+const inputs = document.querySelectorAll('.popup__input')
 
 const editButton = document.querySelector('.profile__edit-button')
 const profileTitle = document.querySelector('.profile__title')
@@ -45,54 +45,58 @@ const nameInput = popupEditForm.querySelector('.popup__input_field_title')
 const jobInput = popupEditForm.querySelector('.popup__input_field_text')
 const nameError = popupEditForm.querySelector('.name-input-error')
 const aboutError = popupEditForm.querySelector('.about-input-error')
+const submitButtonEditForm = popupEditForm.querySelector('.popup__submit-button')
 const descriptionInput = popupAddForm.querySelector('.popup__input_field_description')
 const imageInput = popupAddForm.querySelector('.popup__input_field_image')
 const formImage = popupAddForm.querySelector('.popup__form')
 const cardError = popupAddForm.querySelector('.card-input-error')
 const urlError = popupAddForm.querySelector('.url-input-error')
-
-//Импорты из validate
-import { hideInputError } from '../scripts/validate.js';
+const submitButtonAddForm = popupAddForm.querySelector('.popup__submit-button')
 
 //Функция открытия формы
 const openPopup = (popup) => {
   popup.classList.add('popup_opened')
-  nameError.textContent = ''
-  aboutError.textContent = ''
-  cardError.textContent = ''
-  urlError.textContent = ''
+  //Навешиваем обработчик по клавише 'Esc'
+  document.addEventListener('keydown', closeByEscape)
 }
 
 //Функция закрытия формы
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened')
+  //Удаляем обработчик по клавише 'Esc'
+  document.removeEventListener('keydown', closeByEscape)
 }
 
-// Находим все "оверлеи" проекта по универсальному селектору и проходимся по каждому элементу коллекции NodeList
-overlays.forEach((overlay) => {
-  // Находим 1 раз ближайший к крестику попап 
-  const popup = overlay.closest('.popup')
-  document.addEventListener('keydown', function (evt) {
-    if (evt.key === "Escape") {
+//Функция стирания строк ошибок и нормализации границ полей ввода от ошибок
+const eraseErrors = (string1, string2, border) => {
+  string1.textContent = ''
+  string2.textContent = ''
+  border.forEach((item) => {
+    item.classList.remove('popup__input_type_error')
+  })
+}
+
+//Функция закрытия попапа по клавише Esc
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    // Нашли открытый попап и закрыли его функцией closePopup
+    const openedPopup = document.querySelector('.popup_opened')
+    closePopup(openedPopup)
+  }
+}
+
+//Для каждого попапа
+popups.forEach((popup) => {
+  //Закрытие попапа по клику на оверлей и на крестик
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
       closePopup(popup)
     }
-  });
-  // Устанавливаем обработчик на закрытие формы
-  overlay.addEventListener('click', (evt) => {
-    if(evt.target === evt.currentTarget) {
+    if (evt.target.classList.contains('popup__close-button')) {
       closePopup(popup)
     }
   })
 })
-
-// Находим все "крестики" проекта по универсальному селектору и проходимся по каждому элементу коллекции NodeList
-closeButtons.forEach((button) => {
-  // Находим 1 раз ближайший к крестику попап 
-  const popup = button.closest('.popup');
-
-  // Устанавливаем обработчик закрытия на кнопку закрытия формы
-  button.addEventListener('click', () => closePopup(popup));
-});
 
 //Форма редактирования профиля
 //по клику на кнопку редактора открываем форму и записываем в поля значения с экрана
@@ -100,6 +104,11 @@ editButton.addEventListener('click', () => {
   openPopup(popupEditForm)
   nameInput.value = profileTitle.textContent
   jobInput.value = profileText.textContent
+  //Если закрытие формы было с "красными полями" - очищаем ошибки для лучшего UX
+  eraseErrors(nameError, aboutError, inputs)
+  //Кнопка сабмита всегда активная при открытии
+  submitButtonEditForm.removeAttribute('disabled')
+  submitButtonEditForm.classList.remove('popup__submit-button_disabled')
 })
 
 //Функция записи данных из формы в блок profile
@@ -126,6 +135,11 @@ addButton.addEventListener('click', () => {
   openPopup(popupAddForm)
   descriptionInput.value = ''
   imageInput.value = ''
+  //Если закрытие формы было с "красными полями" - очищаем ошибки для лучшего UX
+  eraseErrors(cardError, urlError, inputs)
+  //Кнопка сабмита всегда деактивирована при открытии
+  submitButtonAddForm.setAttribute('disabled', '')
+  submitButtonAddForm.classList.add('popup__submit-button_disabled')
 })
 
 //Функция записи данных из формы в сгенерированную карточку elements
