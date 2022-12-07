@@ -9,6 +9,7 @@
   background: url(../../../images/close-button.svg) center no-repeat;
   cursor: pointer;
   transition: opacity .3s linear;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .popup__close-button:hover {

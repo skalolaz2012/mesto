@@ -6,6 +6,7 @@
   background-size: contain;
   cursor: pointer;
   transition: opacity .3s linear;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .elements__button:hover {

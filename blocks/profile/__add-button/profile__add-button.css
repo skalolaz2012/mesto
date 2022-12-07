@@ -10,6 +10,7 @@
   margin-left: auto;
   cursor: pointer;
   transition: opacity .3s linear;
+  -webkit-tap-highlight-color: transparent;
 }
   
 .profile__add-button:hover {

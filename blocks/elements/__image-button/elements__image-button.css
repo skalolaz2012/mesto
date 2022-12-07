@@ -1,3 +1,4 @@
 .elements__image-button {
   all: unset;
+  -webkit-tap-highlight-color: transparent;
 }

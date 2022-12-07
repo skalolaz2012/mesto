@@ -11,6 +11,7 @@
   margin-left: 18px;
   cursor: pointer;
   transition: opacity .3s linear;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .profile__edit-button:hover {
