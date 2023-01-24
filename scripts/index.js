@@ -1,30 +1,5 @@
-//массив с данными 6 карточек
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+import Card from './Card.js'
+import FormValidator from './FormValidator.js'
 
 const popupEditForm = document.querySelector('#popup-edit-form')
 const popupAddForm = document.querySelector('#popup-add-form')
@@ -52,6 +27,43 @@ const formImage = popupAddForm.querySelector('.popup__form')
 const cardError = popupAddForm.querySelector('.card-input-error')
 const urlError = popupAddForm.querySelector('.url-input-error')
 const submitButtonAddForm = popupAddForm.querySelector('.popup__submit-button')
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+]
+
+const selectorsSettings = {
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}
+
+const validationFormEditCard = new FormValidator(selectorsSettings, popupEditForm)
+const validationFormAddCard = new FormValidator(selectorsSettings, popupAddForm)
 
 //Функция открытия формы
 const openPopup = (popup) => {
@@ -98,20 +110,20 @@ popups.forEach((popup) => {
   })
 })
 
-//Форма редактирования профиля
-//по клику на кнопку редактора открываем форму и записываем в поля значения с экрана
+//Форма редактирования профиля: по клику на кнопку редактора открываем форму и записываем в поля значения с экрана
 editButton.addEventListener('click', () => {
   openPopup(popupEditForm)
+
   nameInput.value = profileTitle.textContent
   jobInput.value = profileText.textContent
-  //Если закрытие формы было с "красными полями" - очищаем ошибки для лучшего UX
+  // Если закрытие формы было с "красными полями" - очищаем ошибки для лучшего UX
   eraseErrors(nameError, aboutError, inputs)
-  //Кнопка сабмита всегда активная при открытии
+  // Кнопка сабмита всегда активная при открытии
   submitButtonEditForm.removeAttribute('disabled')
   submitButtonEditForm.classList.remove('popup__submit-button_disabled')
 })
 
-//Функция записи данных из формы в блок profile
+// Функция записи данных из формы в блок profile
 function handleEditingFormSubmit(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
@@ -125,24 +137,23 @@ function handleEditingFormSubmit(evt) {
   closePopup(popupEditForm)
 }
 
-// Прикрепляем обработчик к форме редактирования профиля:
-// он будет следить за событием “submit” - «отправка»
+// Прикрепляем обработчик к форме редактирования профиля: он будет следить за событием “submit” - «отправка»
 formEl.addEventListener('submit', handleEditingFormSubmit);
 
-//Форма создания карточки
-//по клику на кнопку редактора открываем форму и записываем в поля значения с экрана
+// Форма создания карточки: по клику на кнопку редактора открываем форму и стираем значения полей инпута
 addButton.addEventListener('click', () => {
   openPopup(popupAddForm)
+
   descriptionInput.value = ''
   imageInput.value = ''
-  //Если закрытие формы было с "красными полями" - очищаем ошибки для лучшего UX
+  // Если закрытие формы было с "красными полями" - очищаем ошибки для лучшего UX
   eraseErrors(cardError, urlError, inputs)
-  //Кнопка сабмита всегда деактивирована при открытии
+  // Кнопка сабмита всегда деактивирована при открытии
   submitButtonAddForm.setAttribute('disabled', '')
   submitButtonAddForm.classList.add('popup__submit-button_disabled')
 })
 
-//Функция записи данных из формы в сгенерированную карточку elements
+// Функция записи данных из формы в сгенерированную карточку elements
 function handleAddingFormSubmit(evt) {
   evt.preventDefault()
 
@@ -157,25 +168,10 @@ function handleAddingFormSubmit(evt) {
   closePopup(popupAddForm)
 }
 
-// Прикрепляем обработчик к форме добавления карточки:
-// он будет следить за событием “submit” - «отправка»
+// Прикрепляем обработчик к форме добавления карточки: он будет следить за событием “submit” - «отправка»
 formImage.addEventListener('submit', handleAddingFormSubmit)
 
-//Templates
-const elementsTemplate = document.querySelector('#element-template').content.querySelector('.elements__item')
-
-//Генерация карточки
-//Вешаем событие на значок корзины и удаляем карточку
-const handleDeleteItem = (evt) => {
-  evt.target.closest('.elements__item').remove()
-}
-
-//Событие на кнопку лайка - toggle класса
-const handleLikeItem = (evt) => {
-  evt.target.classList.toggle('elements__button_active')
-}
-
-//Открываем карточку с большим изображением 
+// Открываем карточку с большим изображением 
 const handleOpenFigure = (evt) => {
   const figureImage = evt.target
 
@@ -188,34 +184,19 @@ const handleOpenFigure = (evt) => {
   openPopup(popupFigure)
 }
 
-//Создаём карточку из шаблона со всеми элементами
-const createCard = (card) => {
-  const newItem = elementsTemplate.cloneNode(true)
-  const title = newItem.querySelector('.elements__title')
-  title.textContent = card.name
-
-  const image = newItem.querySelector('.elements__image')
-  image.setAttribute('src', card.link)
-  image.setAttribute('alt', `${card.name} - фото`)
-
-  const deleteButton = newItem.querySelector('.elements__delete-button')
-  deleteButton.addEventListener('click', handleDeleteItem)
-
-  const likeButton = newItem.querySelector('.elements__button')
-  likeButton.addEventListener('click', handleLikeItem)
-
-  const elementsImageButton = newItem.querySelector('.elements__image-button')
-  elementsImageButton.addEventListener('click', handleOpenFigure)
-
-  return newItem
-}
-
-//Добавляем 6 карточек
+// Добавляем 6 карточек
 const renderCard = (card) => {
-  elementsContainer.prepend(createCard(card))
+  const newCard = new Card(card, '#element-template', handleOpenFigure)
+  elementsContainer.prepend(newCard.getView()) // getView - публичный метод получения представления карточки
 }
 
-//Рендерим 6 карточек
+// Рендерим 6 карточек
 initialCards.forEach((card) => {
   renderCard(card)
 })
+
+// Запускаем валидацию формы редактирования профиля
+validationFormEditCard.enableValidation()
+
+// Запускаем валидацию формы добавления карточек
+validationFormAddCard.enableValidation()
