@@ -64,7 +64,9 @@
               maxlength="40"
               class="popup__input popup__input_field_title"
               id="name-input">
-              <span class="name-input-error popup__error"></span>
+            <div class="popup__field">
+              <span class="name-input-error popup__error popup__error-field"></span>
+            </div>
             <input
               type="text"
               name="about"
@@ -74,7 +76,9 @@
               maxlength="200"
               class="popup__input popup__input_field_text"
               id="about-input">
-              <span class="about-input-error popup__error"></span>
+            <div class="popup__field">
+              <span class="about-input-error popup__error popup__error-field"></span>
+            </div>
             <button type="submit" class="popup__submit-button">Сохранить</button>
           </fieldset>
         </form>
@@ -97,7 +101,9 @@
               maxlength="30"
               class="popup__input popup__input_field_description"
               id="card-input">
-              <span class="card-input-error popup__error"></span>
+              <div class="popup__field">
+                <span class="card-input-error popup__error popup__error-field"></span>
+              </div>
             <input
               type="url"
               name="url"
@@ -105,7 +111,9 @@
               required
               class="popup__input popup__input_field_image"
               id="url-input">
-              <span class="url-input-error popup__error"></span>
+              <div class="popup__field">
+                <span class="url-input-error popup__error popup__error-field"></span>
+              </div>
             <button type="submit" class="popup__submit-button">Создать</button>
           </fieldset>
         </form>

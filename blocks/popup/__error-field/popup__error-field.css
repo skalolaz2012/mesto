@@ -1,0 +1,10 @@
+.popup__error-field {
+position: absolute;
+width: 360px;
+}
+
+@media (max-width: 640px) {
+.popup__error-field {
+    width: 238px;
+  }
+}

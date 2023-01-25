@@ -1,11 +1,11 @@
 class Card {
   // В конструкторе будут динамические данные, для каждого экземпляра свои
-  constructor(card, templateSelector, figure) {
-    // text и image — приватные поля, они нужны только внутри класса
+  constructor(card, templateSelector, openFigure) {
+    // все переменные — приватные поля, они нужны только внутри класса
     this._name = card.name
     this._link = card.link
     this._templateSelector = templateSelector // записали селектор в приватное поле
-    this._figure = figure
+    this._handleImageClick = openFigure
   }
 
   _getTemplate() {
@@ -24,17 +24,8 @@ class Card {
     titleElement.textContent = this._name
     
     const imageElement = this._newCard.querySelector('.elements__image')
-    imageElement.setAttribute('src', this._link)
-    imageElement.setAttribute('alt', `${this._name} - фото`)
-  }
-
-  generateCard() {
-    // Запишем разметку в приватное поле _element. Так у других элементов появится доступ к ней.
-    this._element = this._getTemplate()
-    this._setEventListeners() // добавим обработчики
-
-    // Вернём элемент наружу
-    return this._element
+    imageElement.src = this._link
+    imageElement.alt = `${this._name} - фото`
   }
 
   _handleDeleteItem() {
@@ -43,7 +34,7 @@ class Card {
   }
 
   _handleLikeItem() {
-    this.classList.toggle('elements__button_active')
+    this._likeButton.classList.toggle('elements__button_active') // Вот здесь как раз была в this сама кнопка лайка
   }
 
   // Слушатели событий
@@ -53,11 +44,13 @@ class Card {
       this._handleDeleteItem() // Через колбэк это элемент класса - карточка, а через запятую без колбэка - кнопка удаления
     })
 
-    const likeButton = this._newCard.querySelector('.elements__button')
-    likeButton.addEventListener('click', this._handleLikeItem)
+    this._likeButton = this._newCard.querySelector('.elements__button')
+    this._likeButton.addEventListener('click', () => {
+      this._handleLikeItem()
+    })
 
     const elementsImageButton = this._newCard.querySelector('.elements__image-button')
-    elementsImageButton.addEventListener('click', this._figure)
+    elementsImageButton.addEventListener('click', this._handleImageClick)
   }
 
   getView() {
@@ -67,7 +60,6 @@ class Card {
 
     return this._newCard
   }
-
 }
 
 export default Card

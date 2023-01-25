@@ -1,14 +1,15 @@
 class FormValidator {
   constructor(settings, formElement) {
+    this._inputSelector = settings.input
     this._submitButtonSelector = settings.submitButtonSelector
     this._inactiveButtonClass = settings.inactiveButtonClass
     this._inputErrorClass = settings.inputErrorClass
     this._errorClass = settings.errorClass
     this._formElement = formElement
-    this._inputList = Array.from(this._formElement.querySelectorAll('.popup__input'))
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector))
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector)
     }
-
+  
   _showInputError(inputElement) {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`) // Выбираем элемент ошибки на основе уникального класса
     inputElement.classList.add(this._inputErrorClass) // Добавляем стилизацию поля при ошибке
@@ -25,8 +26,7 @@ class FormValidator {
 
   _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
-      // showInputError получает параметром форму, в которой находится проверяемое поле, и само это поле
-      this._showInputError(inputElement)
+      this._showInputError(inputElement) // showInputError получает параметром форму, в которой находится проверяемое поле, и само это поле
     } else {
       this._hideInputError(inputElement)
     }
@@ -41,17 +41,24 @@ class FormValidator {
     })
   }
 
+  disableButton() {
+      this._buttonElement.classList.add(this._inactiveButtonClass)
+      this._buttonElement.disabled = true
+  }
+
+  enableButton() {
+    this._buttonElement.classList.remove(this._inactiveButtonClass)
+    this._buttonElement.disabled = false
+  }
+
   // Переключение состояния кнопки отправки формы
   _toggleButtonState() {
-    // Если есть хотя бы один невалидный инпут
+    // Если есть хотя бы один невалидный инпут, сделаем кнопку неактивной
     if (this._hasInvalidInput()) {
-      // Сделай кнопку неактивной
-      this._buttonElement.classList.add(this._inactiveButtonClass)
-      this._buttonElement.setAttribute('disabled', '')
+      this.disableButton()
     } else {
-      // Иначе сделай кнопку активной
-      this._buttonElement.classList.remove(this._inactiveButtonClass)
-      this._buttonElement.removeAttribute('disabled')
+      // Иначе сделаем кнопку активной
+      this.enableButton()      
     }
   }
 
@@ -68,10 +75,15 @@ class FormValidator {
     })
   }
 
+  hideErrors() {
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement)
+    })
+  }
+
   enableValidation() {
     this._setEventListeners()
   }
-  
 }
 
 export default FormValidator
