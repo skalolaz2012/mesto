@@ -79,7 +79,7 @@ function handleEditingFormSubmit(evt) {
 // Функция записи данных из формы в сгенерированную карточку elements
 function handleAddingFormSubmit(evt) {
   evt.preventDefault()
-  createCard({
+  addCard({
     name: descriptionInput.value,
     link: imageInput.value
   })
