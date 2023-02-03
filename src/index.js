@@ -1,3 +1,4 @@
+import '../pages/index.css'; // добавьте импорт главного файла стилей 
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
 import PopupWithForm from '../components/PopupWithForm.js'
@@ -61,6 +62,7 @@ const popupWithProfileForm = new PopupWithForm(popupProfileFormSelector,
     const about = formData.about
     userInfo.setUserInfo(author, about) //Записываем данные с формы на страницу
     popupWithProfileForm.close() //По клику на кнопку сохранить закрываем форму
+    validationFormProfile.disableButton()
   }
 )
 

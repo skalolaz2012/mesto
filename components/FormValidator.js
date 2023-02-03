@@ -41,7 +41,7 @@ class FormValidator {
     })
   }
 
-  _disableButton() {
+  disableButton() {
       this._buttonElement.classList.add(this._inactiveButtonClass)
       this._buttonElement.disabled = true
   }
@@ -55,7 +55,7 @@ class FormValidator {
   _toggleButtonState() {
     //Если есть хотя бы один невалидный инпут, сделаем кнопку неактивной
     if (this._hasInvalidInput()) {
-      this._disableButton()
+      this.disableButton()
     } else {
       //Иначе сделаем кнопку активной
       this._enableButton()      
