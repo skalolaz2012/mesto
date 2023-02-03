@@ -17,6 +17,13 @@ class PopupWithForm extends Popup {
     return this._formValues
   }
 
+  setInputValues(data) {
+    this._popupFields.forEach((input) => {
+      // тут вставляем в `value` инпута данные из объекта по атрибуту `name` этого инпута
+      input.value = data[input.name]
+    })
+  }
+
   setEventListeners() {
     super.setEventListeners()
     this._popup.addEventListener('submit', (evt) => {

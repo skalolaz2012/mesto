@@ -1,10 +1,10 @@
-import '../src/pages/index.css'; // добавьте импорт главного файла стилей 
-import Card from '../src/components/Card.js'
-import FormValidator from '../src/components/FormValidator.js'
-import PopupWithForm from '../src/components/PopupWithForm.js'
-import Section from '../src/components/Section.js'
-import PopupWithImage from '../src/components/PopupWithImage.js'
-import UserInfo from '../src/components/UserInfo.js'
+import '../pages/index.css'; // добавьте импорт главного файла стилей 
+import Card from '../components/Card.js'
+import FormValidator from '../components/FormValidator.js'
+import PopupWithForm from '../components/PopupWithForm.js'
+import Section from '../components/Section.js'
+import PopupWithImage from '../components/PopupWithImage.js'
+import UserInfo from '../components/UserInfo.js'
 
 
 import {
@@ -16,20 +16,22 @@ import {
   profileTitleSelector,
   profileTextSelector,
   cardsContainer
-} from '../src/utils/constants.js'
+} from '../utils/constants.js'
 
 const popupProfileForm = document.querySelector('#popup-edit-form')
 const popupCardsForm = document.querySelector('#popup-add-form')
 
 const buttonOpensProfileForm = document.querySelector('.profile__edit-button')
 const buttonOpensCardsForm = document.querySelector('.profile__add-button')
+const authorNameInput = popupProfileForm.querySelector('.popup__input_field_title')
+const aboutInput = popupProfileForm.querySelector('.popup__input_field_text')
 
 const validationFormProfile = new FormValidator(validationConfig, popupProfileForm)
 const validationFormCards = new FormValidator(validationConfig, popupCardsForm)
-const popupWithImage = new PopupWithImage(popupFigureSelector) //Экземпляр класса попапа с большим изображением
 
-validationFormProfile.enableValidation() //Запускаем валидацию формы редактирования профиля
-validationFormCards.enableValidation() //Запускаем валидацию формы создания карточек
+//Экземпляр класса попапа с большим изображением
+const popupWithImage = new PopupWithImage(popupFigureSelector)
+
 popupWithImage.setEventListeners() //Навешиваем слушатели на попап с большим изображением
 
 //Экземпляр класса Section
@@ -55,10 +57,12 @@ const userInfo = new UserInfo(
 
 //Создаем экземпляр класса формы редактирования профиля
 const popupWithProfileForm = new PopupWithForm(popupProfileFormSelector,
-  ({nick, about}) => {
-    userInfo.setUserInfo(nick, about) //Записываем данные с формы на страницу 
+  (formData) => {
+    const author = formData.nick
+    const about = formData.about
+    userInfo.setUserInfo(author, about) //Записываем данные с формы на страницу
     popupWithProfileForm.close() //По клику на кнопку сохранить закрываем форму
-    validationFormProfile.disableButton() //Чтобы не было случайно сработки при двойном клике
+    validationFormProfile.disableButton()
   }
 )
 
@@ -66,12 +70,12 @@ popupWithProfileForm.setEventListeners() //Навешиваем слушател
 
 //При нажатии на кнопку редактирования профиля
 buttonOpensProfileForm.addEventListener('click', () => {
-  const userData = userInfo.getUserInfo() //Получаем данные со страницы 
-  popupWithProfileForm.setInputValues(userData)
+  const userData = userInfo.getUserInfo() //Получаем данные со страницы
+  authorNameInput.value = userData.authorName //Записываем в форму
+  aboutInput.value = userData.about
   popupWithProfileForm.open() //Открываем форму редактирования карточки профиля
   validationFormProfile.hideErrors() //Прячем ошибки, если были
-  validationFormProfile.enableButton() //В поле при открытии уже есть данные - кнопка активна
-
+  validationFormProfile.enableValidation() //Запускаем валидацию формы редактирования профиля
 })
 
 //Создаем экземпляр класса формы создания карточки
@@ -92,5 +96,5 @@ popupWithCardForm.setEventListeners() //Навешиваем слушатели 
 buttonOpensCardsForm.addEventListener('click', () => {
   popupWithCardForm.open() //Открываем форму с карточками
   validationFormCards.hideErrors() //Прячем ошибки, если были
-  validationFormCards.disableButton()
+  validationFormCards.enableValidation() //Запускаем валидацию формы создания карточек
 })

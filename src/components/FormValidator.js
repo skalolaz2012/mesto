@@ -46,7 +46,7 @@ class FormValidator {
       this._buttonElement.disabled = true
   }
 
-  _enableButton() {
+  enableButton() {
     this._buttonElement.classList.remove(this._inactiveButtonClass)
     this._buttonElement.disabled = false
   }
@@ -58,7 +58,7 @@ class FormValidator {
       this.disableButton()
     } else {
       //Иначе сделаем кнопку активной
-      this._enableButton()      
+      this.enableButton()      
     }
   }
 

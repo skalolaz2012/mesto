@@ -6,13 +6,13 @@ class UserInfo {
 
   getUserInfo() {
     return {
-      authorName: this._authorName.textContent,
+      nick: this._authorName.textContent,
       about: this._about.textContent
     }
   }
 
-  setUserInfo(authorName, about) {
-    this._authorName.textContent = authorName
+  setUserInfo(nick, about) {
+    this._authorName.textContent = nick
     this._about.textContent = about
   }
 
