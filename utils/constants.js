@@ -33,4 +33,11 @@ export const validationConfig = {
   errorClass: 'popup__error_visible'
 }
 
+export const popupProfileFormSelector = '#popup-edit-form'
+export const popupCardsFormSelector = '#popup-add-form'
+export const popupFigureSelector = '#popup-figure'
+export const profileTitleSelector = '.profile__title'
+export const profileTextSelector = '.profile__text'
+export const cardsContainer = '.elements__list'
+
 export default initialCards

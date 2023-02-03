@@ -1,17 +1,17 @@
 class Card {
   // В конструкторе будут динамические данные, для каждого экземпляра свои
-  constructor(card, templateSelector, openFigure) {
+  constructor(card, templateSelector, handleCardClick) {
     // все переменные — приватные поля, они нужны только внутри класса
     this._name = card.name
     this._link = card.link
     this._templateSelector = templateSelector // записали селектор в приватное поле
-    this._handleImageClick = openFigure
+    this._handleImageClick = handleCardClick
   }
 
   _getTemplate() {
     // Здесь выполним все необходимые операции, чтобы вернуть разметку
     const newItem = document
-      .querySelector(this._templateSelector)
+    .querySelector(this._templateSelector)
     .content.querySelector('.elements__item')
     .cloneNode(true)
 
@@ -53,6 +53,7 @@ class Card {
     elementsImageButton.addEventListener('click', this._handleImageClick)
   }
 
+  //Возвращаем готовый шаблон карточки со слушателями данными
   getView() {
     this._newCard = this._getTemplate()
     this._setData()

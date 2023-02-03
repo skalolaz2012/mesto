@@ -41,35 +41,35 @@ class FormValidator {
     })
   }
 
-  disableButton() {
+  _disableButton() {
       this._buttonElement.classList.add(this._inactiveButtonClass)
       this._buttonElement.disabled = true
   }
 
-  enableButton() {
+  _enableButton() {
     this._buttonElement.classList.remove(this._inactiveButtonClass)
     this._buttonElement.disabled = false
   }
 
-  // Переключение состояния кнопки отправки формы
+  //Переключение состояния кнопки отправки формы
   _toggleButtonState() {
-    // Если есть хотя бы один невалидный инпут, сделаем кнопку неактивной
+    //Если есть хотя бы один невалидный инпут, сделаем кнопку неактивной
     if (this._hasInvalidInput()) {
-      this.disableButton()
+      this._disableButton()
     } else {
-      // Иначе сделаем кнопку активной
-      this.enableButton()      
+      //Иначе сделаем кнопку активной
+      this._enableButton()      
     }
   }
 
   _setEventListeners() {
     this._toggleButtonState()
     this._inputList.forEach((inputElement) => {
-      // каждому полю добавим обработчик события input
+      //Каждому полю добавим обработчик события input
       inputElement.addEventListener('input', () => {
-        // Внутри функции вызовем checkInputValidity, передав ей форму и проверяемый элемент
+        //Внутри функции вызовем checkInputValidity, передав ей форму и проверяемый элемент
         this._checkInputValidity(inputElement)
-        // Чтобы проверять его при изменении любого из полей
+        //Чтобы проверять его при изменении любого из полей
         this._toggleButtonState()
       })
     })
