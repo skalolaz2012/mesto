@@ -1,21 +1,36 @@
 class UserInfo {
-  constructor(authorNameSelector, aboutSelector) {
+  constructor(authorNameSelector, aboutSelector, avatarSelector) {
     this._authorName = document.querySelector(authorNameSelector)
     this._about = document.querySelector(aboutSelector)
+    this._avatar = document.querySelector(avatarSelector)
   }
 
   getUserInfo() {
     return {
-      nick: this._authorName.textContent,
-      about: this._about.textContent
+      name: this._authorName.textContent,
+      about: this._about.textContent,
     }
   }
 
-  setUserInfo(nick, about) {
-    this._authorName.textContent = nick
+  setUserInfo({ name, about, avatar, id }) {
+    this.userInfoFromForm({ name, about })
+    this._avatar.src = avatar
+    this._userId = id
+  }
+
+  userInfoFromForm({ name, about }) {
+    this._authorName.textContent = name
     this._about.textContent = about
   }
 
+
+  setAvatar({newAvatar}) {
+    this._avatar.src = newAvatar
+  }
+
+  getUserId() {
+    return this._userId
+  }
 }
 
 // Принимает в конструктор объект с селекторами двух элементов: 

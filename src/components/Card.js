@@ -1,11 +1,17 @@
 class Card {
   // В конструкторе будут динамические данные, для каждого экземпляра свои
-  constructor(card, templateSelector, handleCardClick) {
+  constructor({ card, templateSelector, handleCardClick, handleDeleteCard, userId, handleLikeItem }) {
     // все переменные — приватные поля, они нужны только внутри класса
     this._name = card.name
     this._link = card.link
+    this._cardId = card._id
+    this._likes = card.likes
     this._templateSelector = templateSelector // записали селектор в приватное поле
     this._handleImageClick = handleCardClick
+    this._handleDeleteCard = handleDeleteCard
+    this._userId = userId
+    this._ownerId = userId === card.owner._id
+    this._handleLikeItem = handleLikeItem
   }
 
   _getTemplate() {
@@ -20,37 +26,73 @@ class Card {
 
   _setData() {
     // Добавим данные в карточку
-    const titleElement = this._newCard.querySelector('.elements__title')
-    titleElement.textContent = this._name
+    this._titleElement = this._newCard.querySelector('.elements__title')
+    this._titleElement.textContent = this._name
     
-    const imageElement = this._newCard.querySelector('.elements__image')
-    imageElement.src = this._link
-    imageElement.alt = `${this._name} - фото`
+    this._imageElement = this._newCard.querySelector('.elements__image')
+    this._imageElement.src = this._link
+    this._imageElement.alt = `${this._name} - фото`
+
+    this._elementsImageButton = this._newCard.querySelector('.elements__image-button')
+
+    this._deleteButton = this._newCard.querySelector('.elements__delete-button')
+
+    this._likeButton = this._newCard.querySelector('.elements__button')
+    this._likeCountElement = this._newCard.querySelector('.elements__count')
+    this._likeCountElement.textContent = this._likes.length
   }
 
-  _handleDeleteItem() {
+  _countLikes() {
+    if (this._checkLike()) {
+      this.setLike()
+    } else {
+      this.unsetLike()
+    }
+  }
+
+  setLike() {
+    this._likeButton.classList.add('elements__button_active')
+    this.likeActive = true
+  }
+
+  unsetLike() {
+    this._likeButton.classList.remove('elements__button_active')
+    this.likeActive = false
+  }
+
+  _checkLike() {
+    return this._likes.some(item => item._id === this._userId)
+  }
+
+  delete() {
     this._newCard.remove()
     this._newCard = null
   }
 
-  _handleLikeItem() {
-    this._likeButton.classList.toggle('elements__button_active') // Вот здесь как раз была в this сама кнопка лайка
-  }
-
   // Слушатели событий
   _setEventListeners() {
-    const deleteButton = this._newCard.querySelector('.elements__delete-button')
-    deleteButton.addEventListener('click', () => {
-      this._handleDeleteItem() // Через колбэк это элемент класса - карточка, а через запятую без колбэка - кнопка удаления
-    })
-
-    this._likeButton = this._newCard.querySelector('.elements__button')
+    if (!this._ownerId) {
+      this._deleteButton.remove()
+      this._deleteButton = null
+    } else {
+      this._deleteButton.addEventListener('click', (evt) => {
+        this._handleDeleteCard(evt) // Через колбэк это элемент класса - карточка, а через запятую без колбэка - кнопка удаления
+      })
+    }
+    
     this._likeButton.addEventListener('click', () => {
       this._handleLikeItem()
     })
 
-    const elementsImageButton = this._newCard.querySelector('.elements__image-button')
-    elementsImageButton.addEventListener('click', this._handleImageClick)
+    this._elementsImageButton.addEventListener('click', this._handleImageClick)
+  }
+
+  getCardId() {
+    return this._cardId
+  }
+
+  getLikesAmount(data) {
+    this._likeCountElement.textContent = data.length
   }
 
   //Возвращаем готовый шаблон карточки со слушателями данными
@@ -58,6 +100,7 @@ class Card {
     this._newCard = this._getTemplate()
     this._setData()
     this._setEventListeners()
+    this._countLikes()
 
     return this._newCard
   }

@@ -6,6 +6,7 @@ class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit
     this._popupForm = this._popup.querySelector('.popup__form')
     this._popupFields = this._popup.querySelectorAll('.popup__input')
+    this._popupSubmitButton = this._popup.querySelector('.popup__submit-button')
   }
 
   _getInputValues() {
@@ -13,7 +14,6 @@ class PopupWithForm extends Popup {
     this._popupFields.forEach(input => {
       this._formValues[input.name] = input.value
     })
-
     return this._formValues
   }
 
@@ -36,6 +36,15 @@ class PopupWithForm extends Popup {
     super.close()
     this._popupForm.reset()
   }
+
+  // При редактировании профиля уведомите пользователя о процессе загрузки, поменяв текст кнопки на: «Сохранение...», пока данные загружаются
+  downloadProcess(isLoading) {
+    if (isLoading) {
+      this._popupSubmitButton.textContent = 'Сохранение...'
+    } else {
+      this._popupSubmitButton.textContent = 'Сохранить'
+    }
+  }
 }
 
 // Кроме селектора попапа принимает в конструктор колбэк сабмита формы.
@@ -47,4 +56,3 @@ class PopupWithForm extends Popup {
 // Для каждого попапа создавайте свой экземпляр класса PopupWithForm.
 
 export default PopupWithForm
-

@@ -1,13 +1,12 @@
 class Section {
-  constructor({ items, renderer }, selector) {
-    this._initialArray = items
+  constructor({ renderer }, selector) {
     this._renderer = renderer
     this._container = document.querySelector(selector)
   }
 
   // публичный метод, который отвечает за отрисовку всех элементов.
-  createCard() {
-    this._initialArray.forEach(item => {
+  renderCard(initialCards) {
+    initialCards.forEach(item => {
       this.addItem(item)
     })
   }

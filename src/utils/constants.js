@@ -1,29 +1,10 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+const configApi = {
+  url: 'https://mesto.nomoreparties.co/v1/cohort-58',
+  headers: {
+    authorization: 'cbc52507-7845-477e-abfa-382323046090',
+    'Content-Type': 'application/json'
   }
-]
+}
 
 export const validationConfig = {
   input: '.popup__input',
@@ -36,8 +17,12 @@ export const validationConfig = {
 export const popupProfileFormSelector = '#popup-edit-form'
 export const popupCardsFormSelector = '#popup-add-form'
 export const popupFigureSelector = '#popup-figure'
+export const popupAvatarFormSelector = '#popup-avatar-form'
+export const popupWithConfirmationSelector = '#popup-delete-form'
 export const profileTitleSelector = '.profile__title'
 export const profileTextSelector = '.profile__text'
+export const profileAvatarSelector = '.profile__avatar'
 export const cardsContainer = '.elements__list'
+export const templateSelector = '#element-template'
 
-export default initialCards
+export default configApi
