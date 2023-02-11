@@ -80,13 +80,13 @@ const cardsList = new Section({
         popupWithConfirmation.open()
         popupWithConfirmation.setHandleConfirmSubmit(() => {
           api.deleteCard(cardId)
-          .then(() => {
-            newCard.delete()
-            popupWithConfirmation.close()
-          })
-          .catch((error) => {
-            console.log(error)
-          })
+            .then(() => {
+              newCard.delete()
+              popupWithConfirmation.close()
+            })
+            .catch((error) => {
+              console.log(error)
+            })
         })
       },
 
@@ -95,22 +95,21 @@ const cardsList = new Section({
       handleLikeItem: () => {
         if (newCard.likeActive) {
           api.deleteLike(newCard.getCardId())
-          .then((data) => {
-            newCard.unsetLike()
-            newCard.setLikesAmount(data.likes)
-          })
-          .catch((error) => {
-            console.log(error)
-          })
-
+            .then((data) => {
+              newCard.unsetLike()
+              newCard.setLikesAmount(data.likes)
+            })
+            .catch((error) => {
+              console.log(error)
+            })
         } else {
           api.putLike(newCard.getCardId())
-          .then((data) => {
-            newCard.setLikesAmount(data.likes)
-          })
-          .catch((error) => {
-            console.log(error)
-          })
+            .then((data) => {
+              newCard.setLikesAmount(data.likes)
+            })
+            .catch((error) => {
+              console.log(error)
+            })
           newCard.setLike()
         }
       }
@@ -130,17 +129,17 @@ const popupWithProfileForm = new PopupWithForm(popupProfileFormSelector,
   (formData) => {
     popupWithProfileForm.downloadProcess(true)
     api.changeUserObj({name: formData.name, about: formData.about})
-    .then((data) => {
-      userInfo.userInfoFromForm( {name: data.name, about: data.about} ) 
-      popupWithProfileForm.close() //По клику на кнопку сохранить закрываем форму
-      validationFormProfile.disableButton() //Чтобы не было случайно сработки при двойном клике
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-    .finally(() => {
-      popupWithProfileForm.downloadProcess(false)
-    })
+      .then((data) => {
+        userInfo.userInfoFromForm( {name: data.name, about: data.about} ) 
+        popupWithProfileForm.close() //По клику на кнопку сохранить закрываем форму
+        validationFormProfile.disableButton() //Чтобы не было случайно сработки при двойном клике
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+      .finally(() => {
+        popupWithProfileForm.downloadProcess(false)
+      })
   })
 
 popupWithProfileForm.setEventListeners() //Навешиваем слушатели на форму редактирования профиля
@@ -162,13 +161,13 @@ const popupWithCardForm = new PopupWithForm(popupCardsFormSelector,
       .then((formData) => {
         cardsList.addItem(formData)
         popupWithCardForm.close() //Закрываем форму
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-    .finally(() => {
-      popupWithCardForm.downloadProcess(false)
-    })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+      .finally(() => {
+        popupWithCardForm.downloadProcess(false)
+      })
   })
 
 popupWithCardForm.setEventListeners() //Навешиваем слушатели на форму создания карточки

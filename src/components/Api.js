@@ -61,9 +61,6 @@ class Api {
       headers: this._headers,
     })
       .then(this._checkRes)
-      .catch((error) => {
-        console.log(error)
-      })
   }
 
 // 8. Постановка и снятие лайка
