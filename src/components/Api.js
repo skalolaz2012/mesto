@@ -78,7 +78,6 @@ class Api {
       })
   }
 
-
 // 8. Постановка и снятие лайка
   putLike(id) {
     return fetch(`${this._url}/cards/${id}/likes`, {
@@ -91,7 +90,6 @@ class Api {
       })
   }
   
-
   deleteLike(id) {
     return fetch(`${this._url}/cards/${id}/likes`, {
       method: 'DELETE',
