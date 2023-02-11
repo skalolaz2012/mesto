@@ -130,8 +130,13 @@
         <h2 class="popup__title">Обновить аватар</h2>
         <form id="form_avatar" name="form_avatar" class="popup__form">
           <fieldset class="popup__field-info">
-            <input type="text" name="avatar" placeholder="Ссылка на аватар" required minlength="2" maxlength="300"
-              class="popup__input popup__input_field_description" id="avatar-input">
+            <input 
+              type="url" 
+              name="avatar" 
+              placeholder="Ссылка на аватар" 
+              required 
+              class="popup__input popup__input_field_description" 
+              id="avatar-input">
             <div class="popup__field">
               <span class="avatar-input-error popup__error popup__error-field"></span>
             </div>
