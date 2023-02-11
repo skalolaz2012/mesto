@@ -24,9 +24,6 @@ class Api {
       headers: this._headers,
     })
       .then(this._checkRes)
-      .catch((error) => {
-        console.log(error)
-      })
   }
 
   // 2. Загрузка карточек с сервера
@@ -35,9 +32,6 @@ class Api {
       headers: this._headers,
     })
       .then(this._checkRes)
-      .catch((error) => {
-        console.log(error)
-      })
   }
 
   // 3. Редактирование профиля
@@ -48,9 +42,6 @@ class Api {
       body: JSON.stringify(data)
     })
       .then(this._checkRes)
-      .catch((error) => {
-        console.log(error)
-      })
   }
 
   // 4. Добавление новой карточки
@@ -61,9 +52,6 @@ class Api {
       body: JSON.stringify(data)
     })
       .then(this._checkRes)
-      .catch((error) => {
-        console.log(error)
-      })
   }
 
   // 7. Удаление карточки
@@ -85,9 +73,6 @@ class Api {
       headers: this._headers,
     })
       .then(this._checkRes)
-      .catch((error) => {
-        console.log(error)
-      })
   }
   
   deleteLike(id) {
@@ -96,9 +81,6 @@ class Api {
       headers: this._headers,
     })
       .then(this._checkRes)
-      .catch((error) => {
-        console.log(error)
-      })
   }
 
 // 9. Обновление аватара пользователя
@@ -109,9 +91,6 @@ class Api {
       body: JSON.stringify(avatar)
     })
       .then(this._checkRes)
-      .catch((error) => {
-        console.log(error)
-      })
   }
 }
 

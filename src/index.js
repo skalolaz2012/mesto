@@ -41,6 +41,9 @@ api.proceedFromServer()
     userInfo.setUserInfo({name: userData.name, about: userData.about, avatar: userData.avatar, id: userData._id})
     cardsList.renderCard(initialCard)
   })
+  .catch((error) => {
+    console.log(error)
+  })
 
 const validationFormProfile = new FormValidator(validationConfig, popupProfileForm)
 const validationFormCards = new FormValidator(validationConfig, popupCardsForm)
@@ -75,11 +78,14 @@ const cardsList = new Section({
       handleDeleteCard: (evt) => {
         const cardId = newCard.getCardId()
         popupWithConfirmation.open()
-        popupWithConfirmation.handleConfirmSubmit(() => {
+        popupWithConfirmation.setHandleConfirmSubmit(() => {
           api.deleteCard(cardId)
           .then(() => {
             newCard.delete()
             popupWithConfirmation.close()
+          })
+          .catch((error) => {
+            console.log(error)
           })
         })
       },
@@ -91,19 +97,23 @@ const cardsList = new Section({
           api.deleteLike(newCard.getCardId())
           .then((data) => {
             newCard.unsetLike()
-            newCard.getLikesAmount(data.likes)
+            newCard.setLikesAmount(data.likes)
+          })
+          .catch((error) => {
+            console.log(error)
           })
 
         } else {
           api.putLike(newCard.getCardId())
           .then((data) => {
-            newCard.getLikesAmount(data.likes)
+            newCard.setLikesAmount(data.likes)
+          })
+          .catch((error) => {
+            console.log(error)
           })
           newCard.setLike()
-
         }
       }
-
     })
 
     return newCard.getView() //Возвращаем элемент карточки
@@ -124,6 +134,9 @@ const popupWithProfileForm = new PopupWithForm(popupProfileFormSelector,
       userInfo.userInfoFromForm( {name: data.name, about: data.about} ) 
       popupWithProfileForm.close() //По клику на кнопку сохранить закрываем форму
       validationFormProfile.disableButton() //Чтобы не было случайно сработки при двойном клике
+    })
+    .catch((error) => {
+      console.log(error)
     })
     .finally(() => {
       popupWithProfileForm.downloadProcess(false)
@@ -150,6 +163,9 @@ const popupWithCardForm = new PopupWithForm(popupCardsFormSelector,
         cardsList.addItem(formData)
         popupWithCardForm.close() //Закрываем форму
     })
+    .catch((error) => {
+      console.log(error)
+    })
     .finally(() => {
       popupWithCardForm.downloadProcess(false)
     })
@@ -172,6 +188,9 @@ const popupWithAvatarForm = new PopupWithForm(popupAvatarFormSelector,
       .then((data) => {
         userInfo.setAvatar({ newAvatar: data.avatar})
         popupWithAvatarForm.close()
+      })
+      .catch((error) => {
+        console.log(error)
       })
       .finally(() => {
         popupWithAvatarForm.downloadProcess(false)

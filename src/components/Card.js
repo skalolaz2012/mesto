@@ -91,7 +91,7 @@ class Card {
     return this._cardId
   }
 
-  getLikesAmount(data) {
+  setLikesAmount(data) {
     this._likeCountElement.textContent = data.length
   }
 

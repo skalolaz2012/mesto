@@ -6,7 +6,7 @@ class PopupWithConfirmation extends Popup {
     this._popupForm = this._popup.querySelector('.popup__form')
   }
 
-  handleConfirmSubmit(submit) {
+  setHandleConfirmSubmit(submit) {
     this._handleSubmit = submit
   }
 

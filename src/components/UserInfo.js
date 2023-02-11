@@ -23,7 +23,6 @@ class UserInfo {
     this._about.textContent = about
   }
 
-
   setAvatar({newAvatar}) {
     this._avatar.src = newAvatar
   }
